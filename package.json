@@ -1,14 +1,14 @@
 {
   "name": "@kaiserleap/raven",
   "version": "0.0.1-development",
-  "description": "Build Nest.js common blocks and files insanely faster!",
+  "description": "Build common blocks and files insanely faster!",
   "author": "Mustafa Alhasanat",
   "license": "ISC",
   "main": "./bin/main.js",
   "exports": "./bin/main.js",
   "type": "module",
   "bin": {
-    "ravennest": "bin/main.js"
+    "raven": "bin/main.js"
   },
   "publishConfig": {
     "access": "public"

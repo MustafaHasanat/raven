@@ -8,6 +8,7 @@ import createAction from "./lib/actions/create.js";
 import dockerizeAction from "./lib/actions/dockerize.js";
 import { isNodeProject } from "./lib/middlewares/isNodeProject.js";
 import defaultAction from "./lib/actions/default.js";
+import buildAction from "./lib/actions/build.js";
 import initAction from "./lib/actions/init.js";
 import {
     CreateFileSetArgument,
@@ -16,7 +17,6 @@ import {
 } from "./lib/enums/actions.js";
 import { AppOptions } from "app";
 import { handleDebugger } from "./lib/middlewares/debugger.js";
-import compileAction from "lib/actions/compile.js";
 
 export default function InitAction() {
     // Initialize the cli-tool program
@@ -33,23 +33,22 @@ export default function InitAction() {
         )
         .description(constants.program.description);
 
-    // configure the init command
+    // configure the 'init' command
     program
         .command(constants.commands.init.command)
         .description(constants.commands.init.description)
-        .action(async (options: AppOptions) => {
+        .action(async () => {
             isNodeProject();
-            await handleDebugger(options);
             await initAction();
         });
 
-    // configure the compile command
+    // configure the build command
     program
-        .command(constants.commands.compile.command)
-        .description(constants.commands.compile.description)
+        .command(constants.commands.build.command)
+        .description(constants.commands.build.description)
         .action(async () => {
             isNodeProject();
-            await compileAction();
+            await buildAction();
         });
 
     // configure the docker command

@@ -1,10 +1,45 @@
 {
-    "framework": "nest.js",
-    "projectName": "Sandbox Raven",
-    "tables": {
+    "project": {
+        "framework": "nest.js",
+        "name": "Raven Project",
+        "outDir": "./src",
+        "debugger": true
     },
-    "relations": [
-    ],
-    "enums": {
+    "database": {
+        "tables": {},
+        "relations": [],
+        "enums": {}
+    },
+    "services": {
+        "mailer": true,
+        "aws": true
+    },
+    "env": {
+        "swagger": {
+            "allowedUrls": "FRONTEND_URLS",
+            "url": "ENVIRONMENT",
+            "port": "PORT"
+        },
+        "jwt": {
+            "secret": "JWT_SECRET"
+        },
+        "database": {
+            "host": "DATABASE_HOST",
+            "port": "DATABASE_PORT",
+            "user": "POSTGRES_USER",
+            "password": "POSTGRES_PASSWORD",
+            "name": "POSTGRES_DB"
+        },
+        "mailer": {
+            "email": "OFFICIAL_EMAIL",
+            "password": "OFFICIAL_EMAIL_PASSWORD",
+            "provider": "MAILER_SERVICE_PROVIDER"
+        },
+        "aws": {
+            "accessKey": "AWS_ACCESS_KEY",
+            "secretKey": "AWS_SECRET_ACCESS_KEY",
+            "region": "AWS_REGION",
+            "bucketName": "S3_BUCKET_NAME"
+        }
     }
 }

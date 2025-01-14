@@ -1,4 +1,4 @@
-export type FrameworkType = "nest.js";
+export type FrameworkType = "nest.js" | "next.js" | "django";
 
 export type ColumnType =
     | "string"
@@ -16,14 +16,7 @@ export type RavenConfigType = {
         debugger: boolean;
     };
     database: {
-        configs: {
-            host: string;
-            port: string;
-            user: string;
-            password: string;
-            name: string;
-        };
-        tables: {
+        tables?: {
             [tableName: string]: {
                 [columnName: string]: {
                     type: ColumnType;
@@ -47,12 +40,28 @@ export type RavenConfigType = {
                 };
             };
         };
-        relations: string[];
-        enums: {
+        relations?: string[];
+        enums?: {
             [enumName: string]: string[];
         };
     };
     services: {
+        mailer?: boolean;
+        aws?: boolean;
+    };
+    env: {
+        swagger: {
+            allowedUrls: string;
+            url: string;
+            port: string;
+        };
+        database: {
+            host: string;
+            port: string;
+            user: string;
+            password: string;
+            name: string;
+        };
         jwt: {
             secret: string;
         };
@@ -67,11 +76,6 @@ export type RavenConfigType = {
             region: string;
             bucketName: string;
         };
-    };
-    swagger: {
-        allowedUrls: string;
-        url: string;
-        port: string;
     };
 };
 

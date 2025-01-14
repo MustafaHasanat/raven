@@ -1,4 +1,5 @@
-import { Configurator } from "./Configurator";
+import { specialLog } from "../utils/helpers/logHelpers.js";
+import { Configurator } from "./Configurator.js";
 
 export class NestCompiler extends Configurator {
     constructor() {
@@ -29,29 +30,41 @@ export class NestCompiler extends Configurator {
         // TODO: tables' DTO files
     }
 
-    // TODO: validate the project data
-    private async validateProjectConfig() {}
+    /**
+     * Validate your local '.env' file against what has been specified in the config in the 'env' section
+     */
+    private async validateEnvConfig() {
+        if (!this.configFileObject || !this.envFile) return;
 
-    // TODO: validate the database data
-    private async validateDatabaseConfig() {}
-
-    // TODO: validate the services data
-    private async validateServicesConfig() {}
-
-    // TODO: validate the swagger data
-    private async validateSwaggerConfig() {}
+        Object.entries(this.configFileObject.env).map(([mainKey, objValue]) => {
+            Object.entries(objValue).map(([key, value]) => {
+                if (this.envFile?.indexOf(`${value}=`) === -1)
+                    throw new Error(
+                        `'${mainKey}.${key}': No value was found for '${value}' in the '.env' file`
+                    );
+            });
+        });
+    }
 
     async compile() {
-        // read the config file
+        specialLog({
+            message: "Compiling",
+            situation: "PROCESS",
+        });
+
+        // read the local files
         await this.readConfigFile();
+        await this.readEnvFile();
         // validate the config file
-        await this.validator();
-        await this.validateProjectConfig();
-        await this.validateDatabaseConfig();
-        await this.validateServicesConfig();
-        await this.validateSwaggerConfig();
+        await this.validateConfigFile();
+        await this.validateEnvConfig();
         // build the app
         await this.compileMainFiles();
         await this.compileSchemaFiles();
+
+        specialLog({
+            message: "Compilation is done",
+            situation: "RESULT",
+        });
     }
 }

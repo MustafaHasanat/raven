@@ -7,7 +7,7 @@ const defaultAction = (app: Command, options: AppOptions) => {
 
     // if there was no option selected, show the logo with the instructions for -h
     if (optionsArray.length === 0) {
-        console.log(figlet.textSync("Raven Nest"));
+        console.log(figlet.textSync("Raven"));
         app.outputHelp();
         console.log("\n\n");
         return;

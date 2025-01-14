@@ -1,3 +1,6 @@
+build:
+	npm run build
+
 global:
 	npm run globalize
 

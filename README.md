@@ -1,6 +1,6 @@
-# Raven Nest
+# Raven
 
-Build Nest.js common blocks and files insanely faster!
+Build common blocks and files insanely faster!
 
 ## Ho does it work?
 
@@ -29,7 +29,7 @@ You might also notice some placeholder variables or values written in an upperca
 -   Install **nest-cli** globally:  
      `npm install -g @nestjs/cli`
 
--   Install **ravennest** globally:  
+-   Install **raven** globally:  
      `npm install -g @mustafa-alhasanat/raven-nest`
 
 -   Create a new project:  
@@ -37,27 +37,9 @@ You might also notice some placeholder variables or values written in an upperca
      `cd project-name`
 
 -   Install the recommended dependencies and get the initial dev-kit:  
-     `ravennest init`
+     `raven init`
 
 > Now you're ready to go!
-
-### Initializing your nest app
-
--   Create the starting files:
-
-    -   `ravennest create main`
-    -   `ravennest create --auth --format --aws --mailer app`
-    -   `ravennest create landing-page`
-    -   `ravennest create database`
-
--   Create the special pre-built Users-table (recommended):
-
-    -   `ravennest create --special user table`
-
--   Create your first table:
-
-    -   `ravennest create table`
-    -   `ravennest create column`
 
 # Commands API
 
@@ -65,7 +47,7 @@ You might also notice some placeholder variables or values written in an upperca
 
 Install the recommended dependencies in your project if they're not yet installed. These are different from the ones installed using `nest new` command by default.
 
-> Usage: `ravennest init`
+> Usage: `raven init`
 
 ### The list of dependencies:
 
@@ -98,48 +80,13 @@ Install the recommended dependencies in your project if they're not yet installe
 
 Dockerize the application with the necessary modifications to the config files.
 
-> Usage: `ravennest dockerize`
+> Usage: `raven dockerize`
 
 ### Created Images
 
 -   **postgres-db**: an image for initializing a PostgreSQL DB in the container.
 
 -   **nest-app**: the main image that runs the application.
-
-## The `create` command
-
-Create the necessary files and directories for the selected 'files-set'.
-
-> Usage: `ravennest create [options] <files-set>`
-
-### Argument choices
-
-| Files Set | Description                                                                          |
-| :-------- | :----------------------------------------------------------------------------------- |
-| main      | Create the main files and enable Swagger page.                                       |
-| database  | Made the necessary changes for the database configuration.                           |
-| table     | Create the necessary files for the table (module, controller, service, dto, entity). |
-| column    | Perform the necessary file changes to add a new column to a table.                   |
-| relation  | Perform the necessary file changes to establish a relation between two tables.       |
-
-### Available options
-
-| Option  | Files Set | Description                        | Details               |
-| :------ | :-------- | :--------------------------------- | :-------------------- |
-| aws     | app       | Add the AWS service to the app.    | s3 bucket             |
-| mailer  | app       | Add the mailer service to the app. | outlook, gmail        |
-| special | table     | Create a special type of tables.   | product, notification |
-
-### Examples
-
-| Action                          | Command                                    |
-| :------------------------------ | :----------------------------------------- |
-| create the main files           | `ravennest create --aws --mailer main`     |
-| configure the database          | `ravennest create database`                |
-| create a table                  | `ravennest create table `                  |
-| create a special type of tables | `ravennest create --special product table` |
-| create a column                 | `ravennest create column `                 |
-| create a relation               | `ravennest create relation `               |
 
 # Specifications
 
@@ -183,7 +130,7 @@ Currently, the only available database is **PostgreSQL**
 
 # Common Errors
 
-## Ravennest doesn't have permission on your terminal
+### raven doesn't have permission on your terminal
 
 -   Open your terminal (steps for Ubuntu terminals)
 
@@ -192,4 +139,4 @@ Currently, the only available database is **PostgreSQL**
     -   either: `code ~/.bashrc`
     -   or: `nano ~/.bashrc`
 
--   Provide permission to run ravennest by adding the following line at the end of the file **(after replacing the uppercase words with yours)**: `chmod +x /home/YOUR_USERNAME/.nvm/versions/node/YOUR_NODE_VERSION/bin/ravennest`
+-   Provide permission to run raven by adding the following line at the end of the file **(after replacing the uppercase words with yours)**: `chmod +x /home/YOUR_USERNAME/.nvm/versions/node/YOUR_NODE_VERSION/bin/raven`

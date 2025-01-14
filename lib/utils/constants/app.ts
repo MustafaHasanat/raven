@@ -3,8 +3,8 @@ import { join } from "path";
 
 const appConstants: AppProps = {
     program: {
-        name: "ravennest",
-        description: "Build Nest.js common blocks and files insanely faster!",
+        name: "raven",
+        description: "Build common blocks and files insanely faster!",
         version: {
             number: "1.0.0",
             flags: "-v, --version",
@@ -17,10 +17,10 @@ const appConstants: AppProps = {
             description:
                 "Install the recommended dependencies and add the raven dev-kit.",
         },
-        compile: {
-            command: "compile",
+        build: {
+            command: "build",
             description:
-                "Compile the 'raven.config.json' file into a final src folder.",
+                "Build the 'raven.config.json' file into a final src folder.",
         },
         create: {
             command: "create",

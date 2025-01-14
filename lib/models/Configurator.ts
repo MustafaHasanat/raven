@@ -1,12 +1,18 @@
 import { readFile } from "fs/promises";
-import { ConfiguratorProps, RavenConfigType } from "../types/configurator";
+import { ConfiguratorProps, RavenConfigType } from "../types/configurator.js";
 import Ajv, { ValidationError } from "ajv";
-import { configFileSchema } from "../utils/constants/configurator";
+import { Validator } from "./Validator.js";
+import { configFileSchema } from "../schemas/configurator.js";
 
 export class Configurator {
     protected configFileObject: RavenConfigType | undefined;
+    protected envFile: string | undefined;
+    protected validator: Validator;
 
-    protected constructor() {}
+    protected constructor() {
+        const validator = new Validator();
+        this.validator = validator;
+    }
 
     /**
      * Reads the config file and return its contents
@@ -19,6 +25,8 @@ export class Configurator {
                 await readFile("raven.config.json", "utf8")
             );
 
+            this.configFileObject = configFileObject;
+
             return configFileObject;
         } catch (error) {
             throw Error(
@@ -28,11 +36,32 @@ export class Configurator {
     }
 
     /**
+     * Reads the '.env' file and return its contents
+     *
+     * @returns RavenConfigType
+     */
+    protected async readEnvFile(): Promise<string> {
+        try {
+            const envFile: string = await readFile(".env", "utf8");
+
+            this.envFile = envFile;
+
+            return envFile;
+        } catch (error) {
+            throw Error(`Error while reading '.env' file: ${error}`);
+        }
+    }
+
+    /**
      * Validate the given config file against the json-schema for the configs
      */
-    protected async validator() {
+    protected async validateConfigFile() {
         const ajv = new Ajv();
         const validate = ajv.compile(configFileSchema);
+
+        if (!this.configFileObject)
+            throw new Error("Config object is not defined");
+
         const result = validate(this.configFileObject);
 
         if (!result) {
@@ -43,6 +72,13 @@ export class Configurator {
                     : []
             );
         }
+    }
+
+    protected throwValidationError(
+        isErrorOccurred: boolean,
+        message?: string | null
+    ) {
+        if (isErrorOccurred) throw new Error(message || "");
     }
 
     /**
