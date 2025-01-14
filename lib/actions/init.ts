@@ -25,12 +25,11 @@ const initAction = async () => {
             message: "Process finished",
             situation: "RESULT",
         });
-        // Initializing the "ravenconfig.json" file
+        // Call the builder to initializing the "raven.config.json" file
         specialLog({
             message: "Initializing",
             situation: "PROCESS",
         });
-        // call the builder
         initBuilder();
     } catch (error) {
         specialLog({

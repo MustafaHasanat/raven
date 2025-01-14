@@ -17,6 +17,11 @@ const appConstants: AppProps = {
             description:
                 "Install the recommended dependencies and add the raven dev-kit.",
         },
+        compile: {
+            command: "compile",
+            description:
+                "Compile the 'raven.config.json' file into a final src folder.",
+        },
         create: {
             command: "create",
             description:

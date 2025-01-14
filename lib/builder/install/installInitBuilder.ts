@@ -10,7 +10,7 @@ import { specialLog } from "../../utils/helpers/logHelpers.js";
 
 export default async function initBuilder() {
     inquirer
-        .prompt([constants.shared.overwrite(["ravenconfig.json", ".gitignore"])])
+        .prompt([constants.shared.overwrite(["raven.config.json", ".gitignore"])])
         .then(async ({ overwrite }) => {
             pathCreator(["src/common"]);
 

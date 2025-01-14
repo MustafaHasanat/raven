@@ -16,6 +16,7 @@ import {
 } from "./lib/enums/actions.js";
 import { AppOptions } from "app";
 import { handleDebugger } from "./lib/middlewares/debugger.js";
+import compileAction from "lib/actions/compile.js";
 
 export default function InitAction() {
     // Initialize the cli-tool program
@@ -40,6 +41,15 @@ export default function InitAction() {
             isNodeProject();
             await handleDebugger(options);
             await initAction();
+        });
+
+    // configure the compile command
+    program
+        .command(constants.commands.compile.command)
+        .description(constants.commands.compile.description)
+        .action(async () => {
+            isNodeProject();
+            await compileAction();
         });
 
     // configure the docker command

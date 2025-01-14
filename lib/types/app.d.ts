@@ -31,6 +31,7 @@ declare module "app" {
         };
         commands: {
             init: CommandType;
+            compile: CommandType;
             create: CommandTypeArgument & CommandTypeOption;
             dockerize: CommandType;
         };

@@ -9,6 +9,7 @@ declare module "actions" {
 
     type ActionTag =
         | "init-install"
+        | "compile"
         | "init-docker"
         | "create-main"
         | "create-database"

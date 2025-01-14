@@ -1,0 +1,10 @@
+{
+    "framework": "nest.js",
+    "projectName": "Sandbox Raven",
+    "tables": {
+    },
+    "relations": [
+    ],
+    "enums": {
+    }
+}

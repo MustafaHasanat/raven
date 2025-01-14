@@ -23,14 +23,14 @@ export interface MemorizerProps {
 export const readConfigFile = async (category: ConfigCategory): Promise<any> => {
     try {
         const memoFileContent: { [key: string]: any } = JSON.parse(
-            await readFile("ravenconfig.json", "utf8")
+            await readFile("raven.config.json", "utf8")
         );
 
         !!!memoFileContent[category] && (memoFileContent[category] = {});
 
         return memoFileContent;
     } catch (error) {
-        throw Error(`Error while reading 'ravenconfig.json': ${error}`);
+        throw Error(`Error while reading 'raven.config.json': ${error}`);
     }
 };
 
@@ -39,12 +39,12 @@ export const writeConfigFile = async (memoFileContent: {
 }): Promise<void> => {
     try {
         await writeFile(
-            join(process.cwd(), "ravenconfig.json"),
+            join(process.cwd(), "raven.config.json"),
             JSON.stringify(memoFileContent),
             "utf8"
         );
     } catch (error) {
-        throw Error(`Error while modifying 'ravenconfig.json': ${error}`);
+        throw Error(`Error while modifying 'raven.config.json': ${error}`);
     }
 };
 
@@ -55,7 +55,7 @@ export const checkMemo = async ({
     try {
         const result: MemoValues = {};
         const memoFileContent: { [key: string]: any } = JSON.parse(
-            await readFile("ravenconfig.json", "utf8")
+            await readFile("raven.config.json", "utf8")
         );
 
         const curCategory = memoFileContent[category];
@@ -67,7 +67,7 @@ export const checkMemo = async ({
             });
         } else {
             throw new Error(
-                `Couldn't reach the category ${category} from 'ravenconfig.json'`
+                `Couldn't reach the category ${category} from 'raven.config.json'`
             );
         }
 
@@ -75,7 +75,7 @@ export const checkMemo = async ({
     } catch (error) {
         specialLog({
             situation: "ERROR",
-            message: `an error occurred while modifying the 'ravenconfig.json' file: ${error}`,
+            message: `an error occurred while modifying the 'raven.config.json' file: ${error}`,
         });
         return null;
     }
